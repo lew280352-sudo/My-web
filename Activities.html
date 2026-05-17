@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my activities</title>
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+ <!-- แท็กนำทางหลักของหน้า -->
+    <nav>
+        <!-- กล่องเนื้อหาใช้จัดตำแหน่งและกั้นกรอบ -->
+        <div class="content">
+            <!-- บรรจุส่วนของโลโก้และเมนู -->
+            <div class="nav-con">
+                <!-- โลโก้หรือชื่อเว็บ สามารถคลิกเพื่อกลับหน้าแรก -->
+                <div class="logo"><a href="#"> <img src="logo.jpg" alt="Logo"></a></div>
+                <!-- เมนูนำทางหลักของเว็บ -->
+                <ul class="menu">
+                    <li><a href="index.html"><span>Home</span></a></li>
+                    
+                    <li><a href="Education.html"><span>Education</span></a></li>
+                    <li><a href="Transcript.html"><span>Transcript</span></a></li>
+                    <li><a href="#Activities"><span>Activities</span></a></li>
+                    <li><a href="Certifications.html"><span>Certifications</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- เนื้อหาของหน้านี้ -->
+    <section class="main" id="Activities">
+        <div class="container">
+            <div class="maincontainer-con">
+
+                <!-- ส่วนข้อความเยื้องซ้าย -->
+                <div class="maincontent-info">
+                    <p class="slide-label">Gallery</p>
+                    <h2 class="slide-title" id="slide-title">Moment One</h2>
+                    <p class="slide-desc" id="slide-desc">A snapshot of life, light, and everything in between.</p>
+                    <!-- Counter -->
+                    <div class="slide-counter">
+                        <span id="current-num">01</span>
+                        <span class="counter-sep"></span>
+                        <span id="total-num">04</span>
+                    </div>
+                    <!-- Dots -->
+                    <div class="dots" id="dots"></div>
+                </div>
+
+                <!-- Carousel -->
+                <div class="carousel-wrap">
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="carousel-slide active">
+                            <img src="lew.jpg" alt="Photo 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="lew.jpg" alt="Photo 2" style="filter: hue-rotate(60deg);">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="lew.jpg" alt="Photo 3" style="filter: grayscale(80%);">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="lew.jpg" alt="Photo 4" style="filter: sepia(70%);">
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="carousel-btns">
+                        <button class="carousel-btn prev" id="prev-btn" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn next" id="next-btn" aria-label="Next">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Decorative corner tag -->
+                    <div class="corner-tag">✦</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // อ้างอิง element ของ carousel และ UI ที่เกี่ยวข้อง
+        // document.querySelectorAll จะหา element ทุกตัวที่ตรงกับ selector ที่กำหนด
+        const slides = document.querySelectorAll('.carousel-slide');
+        const track = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentNum = document.getElementById('current-num');
+        const totalNum = document.getElementById('total-num');
+        const dotsContainer = document.getElementById('dots');
+        const slideTitle = document.getElementById('slide-title');
+        const slideDesc = document.getElementById('slide-desc');
+
+        // ข้อความหัวข้อและคำบรรยายต่อสไลด์
+        const titles = ['Moment One', 'Moment Two', 'Moment Three', 'Moment Four'];
+        const descs = [
+            'A snapshot of life, light, and everything in between.',
+            'Colors shift, perspectives change, beauty remains.',
+            'In grayscale lies the purest form of memory.',
+            'Warmth fades to sepia — time frozen in amber.'
+        ];
+
+        let current = 0; // ดัชนีของสไลด์ปัจจุบัน
+        const total = slides.length;
+        totalNum.textContent = String(total).padStart(2, '0'); // กำหนดจำนวนสไลด์ทั้งหมด
+
+        // สร้าง dot ตัวควบคุมแต่ละสไลด์
+        // document.createElement สร้างปุ่มใหม่ทีละปุ่ม
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goTo(i, i > current ? 'next' : 'prev'));
+            dotsContainer.appendChild(dot);
+        });
+
+        // ปรับสถานะ active ของ dot ตามสไลด์ที่กำลังแสดง
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((d, i) => {
+                // classList.toggle ที่มีเงื่อนไข จะเพิ่ม class เมื่อเงื่อนไขเป็นจริง
+                d.classList.toggle('active', i === current);
+            });
+        }
+
+        // ย้ายไปยังสไลด์ index ที่ระบุ และกำหนดทิศทางอนิเมชัน
+        function goTo(index, dir = 'next') {
+            const prev = current;
+            slides[prev].classList.remove('active');
+            slides[prev].classList.add(dir === 'next' ? 'exit-left' : 'exit-right');
+
+            current = (index + total) % total; // หมุนกลับเมื่อไปสุดขอบ
+            slides[current].classList.add(dir === 'next' ? 'enter-right' : 'enter-left');
+
+            // ใช้ requestAnimationFrame เพื่อให้การเปลี่ยนคลาสเกิดหลังการเรนเดอร์ก่อนหน้า
+            // requestAnimationFrame จะเลื่อน callback ไปทำงานบนเฟรมถัดไปของ browser
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slides[current].classList.add('active');
+                    slides[current].classList.remove('enter-right', 'enter-left');
+                });
+            });
+
+            // setTimeout ใช้หน่วงเวลา 600ms ก่อนลบคลาส exit ออก
+            setTimeout(() => {
+                slides[prev].classList.remove('exit-left', 'exit-right');
+            }, 600);
+
+            // อัปเดตตัวเลขและ dot UI
+            currentNum.textContent = String(current + 1).padStart(2, '0');
+            updateDots();
+
+            // เปลี่ยนข้อความหัวข้อและคำบรรยาย พร้อมเอฟเฟกต์จาง
+            slideTitle.classList.add('text-fade');
+            slideDesc.classList.add('text-fade');
+            setTimeout(() => {
+                slideTitle.textContent = titles[current];
+                slideDesc.textContent = descs[current];
+                slideTitle.classList.remove('text-fade');
+                slideDesc.classList.remove('text-fade');
+            }, 250);
+        }
+
+        // ปุ่มลูกศรสำหรับควบคุม carousel
+        nextBtn.addEventListener('click', () => goTo(current + 1, 'next'));
+        prevBtn.addEventListener('click', () => goTo(current - 1, 'prev'));
+
+        // รองรับการควบคุมด้วยคีย์บอร์ด
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') goTo(current + 1, 'next');
+            if (e.key === 'ArrowLeft') goTo(current - 1, 'prev');
+        });
+    </script>
+
+
+
+
+  <!-- ตรวจสอบและไฮไลท์เมนูที่ active -->
+    <script>
+        function updateActiveMenu() {
+            const currentHash = window.location.hash || '#Home';
+            const currentPage = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
+            const currentPageName = currentPage.replace(/\.html$/, '');
+            
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.classList.remove('active');
+                
+                const href = link.getAttribute('href');
+                if (!href) return;
+                
+                if (href.startsWith('#')) {
+                    const targetId = href.slice(1).toLowerCase();
+                    const currentHashId = currentHash.slice(1).toLowerCase();
+                    if (targetId === currentHashId || targetId === currentPageName) {
+                        link.classList.add('active');
+                    }
+                }
+                else if (currentPage === href.toLowerCase()) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // อัปเดตเมื่อหน้าโหลด
+        updateActiveMenu();
+        
+        // อัปเดตเมื่อเปลี่ยน hash (ลิงก์ anchor)
+        window.addEventListener('hashchange', updateActiveMenu);
+    </script>
+<footer>
+    <div class="footer-con">
+        <div>
+            <p class="footer-eyebrow">Portfolio</p>
+            <p class="footer-brand">Kantniti</p>
+        </div>
+        <div class="footer-links">
+            <p class="footer-eyebrow">Contact</p>
+            <a href="mailto:lew280352@gmail.com">✉ lew280352@gmail.com</a>
+            <a href="https://github.com/yourusername" target="_blank">⌥ GitHub</a>
+            <a href="https://line.me/ti/p/~lew98675" target="_blank">◎ Line: @lew98675</a>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-bottom">© 2027 Kantniti· All rights reserved</p>
+</footer>
+</body>
+</html>

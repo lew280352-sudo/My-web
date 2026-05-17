@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my education</title>
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+ <!-- แท็กนำทางหลักของหน้า -->
+    <nav>
+        <!-- กล่องเนื้อหาใช้จัดตำแหน่งและกั้นกรอบ -->
+        <div class="content">
+            <!-- บรรจุส่วนของโลโก้และเมนู -->
+            <div class="nav-con">
+                <!-- โลโก้หรือชื่อเว็บ สามารถคลิกเพื่อกลับหน้าแรก -->
+                <div class="logo"><a href="#"> <img src="logo.jpg" alt="Logo"></a></div>
+                <!-- เมนูนำทางหลักของเว็บ -->
+                <ul class="menu">
+                    <li><a href="index.html"><span>Home</span></a></li>
+                
+                    <li><a href="#Education"><span>Education</span></a></li>
+                    <li><a href="Transcript.html"><span>Transcript</span></a></li>
+                    <li><a href="Activities.html"><span>Activities</span></a></li>
+                    <li><a href="Certifications.html"><span>Certifications</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- เนื้อหาของหน้านี้ -->
+    <section class="main" id="Education">
+        <p>เนื้อหา Education ของคุณ</p>
+    </section>
+
+
+
+
+
+  <!-- ตรวจสอบและไฮไลท์เมนูที่ active -->
+    <script>
+        // ฟังก์ชันนี้จะดูว่าอยู่หน้าไหน แล้วทำให้เมนูนั้นมี class active
+        function updateActiveMenu() {
+            const currentHash = window.location.hash || '#Home';
+            const currentPage = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
+            const currentPageName = currentPage.replace(/\.html$/, '');
+            
+            document.querySelectorAll('.menu a').forEach(link => {
+                link.classList.remove('active');
+                
+                const href = link.getAttribute('href');
+                if (!href) return;
+                
+                if (href.startsWith('#')) {
+                    const targetId = href.slice(1).toLowerCase();
+                    const currentHashId = currentHash.slice(1).toLowerCase();
+                    if (targetId === currentHashId || targetId === currentPageName) {
+                        link.classList.add('active');
+                    }
+                }
+                else if (currentPage === href.toLowerCase()) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        updateActiveMenu(); // เรียกเมื่อโหลดหน้า
+        window.addEventListener('hashchange', updateActiveMenu); // ฟังการเปลี่ยน # ใน URL
+    </script>
+<footer>
+    <div class="footer-con">
+        <div>
+            <p class="footer-eyebrow">Portfolio</p>
+            <p class="footer-brand">Kantniti</p>
+        </div>
+        <div class="footer-links">
+            <p class="footer-eyebrow">Contact</p>
+            <a href="mailto:lew280352@gmail.com">✉ lew280352@gmail.com</a>
+            <a href="https://github.com/yourusername" target="_blank">⌥ GitHub</a>
+            <a href="https://line.me/ti/p/~lew98675" target="_blank">◎ Line: @lew98675</a>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-bottom">© 2027 Kantniti· All rights reserved</p>
+</footer>
+</body>
+</html>

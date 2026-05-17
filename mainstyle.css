@@ -1,0 +1,895 @@
+/* รีเซ็ตขอบและ padding ของทุก element ให้เป็น 0
+   เพื่อให้ CSS เริ่มจากสภาพเดียวกันทุก browser
+   box-sizing: border-box จะรวม padding และ border ไว้ในความกว้างและความสูงของ element */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .content ใช้จำกัดความกว้างของเนื้อหา
+   margin: 0 auto ทำให้บล็อกนี้อยู่ตรงกลางหน้าจอ */
+.content {
+    max-width: 1140px;
+    margin: 0 auto ;
+}
+
+/* สไตล์แท็ก <nav> ทั้งหมด
+   padding คือระยะห่างด้านใน
+   background-color กำหนดสีพื้นหลัง */
+nav{
+    padding : 1rem;
+    background-color: #333;
+}
+
+/* .nav-con ใช้ Flexbox จัดวาง
+   display: flex เปิดใช้งาน Flexbox
+   justify-content: space-between วาง child จากซ้ายไปขวาให้ชิดสองฝั่ง
+   align-items: center จัดให้อยู่กึ่งกลางในแนวตั้ง */
+.nav-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+/* ปรับขนาดรูปโลโก้ให้ไม่ใหญ่เกินไป */
+.logo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* ทำให้รูปเต็มกรอบโดยยังรักษาสัดส่วนไว้ */
+    border-radius: 50%; /* ทำให้รูปกลายเป็นวงกลม */
+    display: block;
+}
+
+/* .menu เป็นตัวกำหนดสไตล์ของเมนูหลัก
+   color และ text-decoration จะใช้กับลิงก์ในเมนู
+   margin-left เว้นระยะห่างจากฝั่งซ้าย
+   font-size กำหนดขนาดตัวอักษร */
+.menu {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    align-items: center;
+}
+
+/* .menu li จัดรายการหัวข้อเมนูให้เรียงแนวนอน
+   display: inline-block แสดงรายการเป็นบล็อกเล็กในแนวนอน
+   margin เว้นช่องว่างซ้ายขวา
+   position: relative เพื่อให้ pseudo-element (เช่น ::before) อ้างอิงตำแหน่งได้ */
+.menu li {
+    display: inline-block;
+    margin: 0 1rem;
+    position: relative;
+}
+
+/* .menu li a คือสไตล์ลิงก์ในเมนู
+   position: relative เพื่อให้ ::before อยู่ในตำแหน่งสัมพัทธ์
+   display: inline-block ทำให้สามารถกำหนด padding และ width ได้
+   padding เพิ่มพื้นที่คลิกรอบตัวอักษร
+   overflow: hidden ซ่อนส่วนที่ล้นออกนอกกรอบ */
+.menu li a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 16px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    overflow: hidden;
+    /* border-radius: 8px ทำให้มุมของลิงก์โค้ง */
+    border-radius: 8px;
+    /* transition: all 0.3s ease ทำให้การเปลี่ยนแปลงราบรื่นใน 0.3 วินาที */
+    transition: all 0.3s ease;
+}
+
+/* ::before เป็น pseudo-element
+   สร้างกล่องพื้นหลังแบบไล่สีสำหรับลิงก์แต่ละรายการ
+   begin left: -100% ให้เริ่มต้นอยู่นอกจอด้านซ้าย
+   z-index: -1 วางไว้หลังข้อความ */
+.menu li a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient สร้างพื้นหลังสีไล่จากสีฟ้าไปสีน้ำเงินในมุม 120 องศา */
+    background: linear-gradient(120deg, #00c3ff, #3a7bd5);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+/* :hover เป็นสไตล์เมื่อเอาเมาส์ชี้
+   เมื่อชี้แล้วให้ ::before เลื่อนไปที่ left: 0 เพื่อแสดงพื้นหลัง */
+.menu li a:hover::before {
+    left: 0;
+}
+
+/* สไตล์ลิงก์เมื่อ hover 
+   transform เลื่อนและขยายเพื่อให้ปุ่มดูเด่น
+   box-shadow เพิ่มเงารอบปุ่ม */
+.menu li a:hover {
+    color: #fff;
+    /* transform: เลื่อนปุ่มขึ้น 5px และขยาย 1.05 เท่า */
+    transform: translateY(-5px) scale(1.05);
+    /* box-shadow: เพิ่มเงาสีฟ้าขนาด 15px รอบปุ่ม */
+    box-shadow: 0 0 15px rgba(0,195,255,0.7);
+}
+
+/* .menu li a span อยู่เหนือ pseudo-element
+   z-index: 2 ทำให้ข้อความไม่ถูกกล่องสีหลังบัง */
+.menu li a span {
+    position: relative;
+    /* z-index: 2 ทำให้ข้อความอยู่เหนือพื้นหลัง */
+    z-index: 2;
+}
+
+/* :active เป็นสไตล์เมื่อกดลิงก์
+   transform: scale(0.95) ทำให้ปุ่มหดลงเล็กน้อยเหมือนถูกกด */
+.menu li a:active {
+    /* transform: scale(0.95) หดปุ่มลงเมื่อกด */
+    transform: scale(0.95);
+}
+
+/* ไฮไลท์ปุ่มเมนูที่ active */
+.menu li a.active {
+    background: linear-gradient(120deg, #00c3ff, #3a7bd5);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0,195,255,0.7);
+}
+
+/* .main เป็นส่วนเนื้อหาหลักของหน้าเว็บ
+   เปลี่ยนพื้นหลังเป็นสีครีมอ่อนเพื่อให้เข้ากับดีไซน์ใหม่ */
+.main {
+    background-color: #f7f5f0;
+    padding: 50px 0;
+}
+
+/* .maincontainer-con ใช้ flex จัดเนื้อหาให้อยู่กึ่งกลาง */
+.maincontainer-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto; 
+    padding: 2rem 1rem; 
+    max-width: 1140px;
+    margin: 0 auto;
+}
+/* .maincontent-info เป็นคอนเทนเนอร์สำหรับข้อมูลหลัก */
+.maincontent-info {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* จัดข้อความให้อยู่กึ่งกลางแนวตั้งในฝั่งของตัวเอง */
+}
+
+
+/* ส่วนแสดงรูปภาพหลักของหน้าจอ */
+.maincontent-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* กำหนดให้ภาพไม่ยืดเกินขนาด และให้มุมโค้งพร้อมเงา */
+.maincontent-img img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== CAROUSEL ===== */
+
+.maincontent-info {
+    flex: 1;
+    padding: 2rem 3rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-bottom: 4rem;
+}
+
+.slide-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #888;
+    font-family: 'Courier New', monospace;
+}
+
+/* หัวข้อสไลด์ ใช้ตัวอักษรขนาดใหญ่และมีไทป์แฟมิลี่ serif */
+.slide-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    font-family: Georgia, serif;
+    line-height: 1.15;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* คำบรรยายสไลด์ เน้นอ่านง่ายด้วยระยะบรรทัดสูง */
+.slide-desc {
+    font-size: 0.95rem;
+    color: #666;
+    max-width: 300px;
+    line-height: 1.7;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.slide-title.text-fade,
+.slide-desc.text-fade {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.slide-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+}
+
+.counter-sep {
+    width: 40px;
+    height: 1px;
+    background: #ccc;
+    display: inline-block;
+}
+
+#current-num {
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.25rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #3a7bd5;
+    transform: scale(1.4);
+}
+
+.carousel-wrap {
+    flex: 1.2;
+    position: relative;
+    padding: 2rem 1rem 2rem 2rem;
+    margin-top: -2rem;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5; /* กำหนดสัดส่วนกว้าง-สูงให้กล่องสไลด์ */
+    max-width: 400px;
+    overflow: hidden; /* ซ่อนไม่ให้รูปหรือสไลด์ล้นออกนอกกล่อง */
+    border-radius: 24px;
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.18),
+        0 10px 20px rgba(0,0,0,0.1);
+    margin-left: auto;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-slide.enter-right {
+    animation: slideInRight 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.carousel-slide.enter-left {
+    animation: slideInLeft 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.carousel-slide.exit-left {
+    animation: slideOutLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.carousel-slide.exit-right {
+    animation: slideOutRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes slideOutLeft {
+    from { transform: translateX(0);     opacity: 1; }
+    to   { transform: translateX(-60px); opacity: 0; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(60px); opacity: 0; }
+}
+
+/* ปุ่มควบคุม carousel วางอยู่ด้านล่างขวาของกล่อง */
+.carousel-btns {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.6rem;
+}
+
+/* ปุ่มลูกศรกลมสำหรับคลิกเปลี่ยนสไลด์ */
+.carousel-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    color: #333;
+}
+
+.carousel-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* hover effect ให้ปุ่มเปลี่ยนสีและขยายเมื่อชี้ */
+.carousel-btn:hover {
+    background: linear-gradient(120deg, #00c3ff, #3a7bd5);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(58, 123, 213, 0.45);
+}
+
+/* กดปุ่มให้ดูเหมือนถูกกดลง */
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+/* ป้ายมุมกล่องแบบตกแต่ง ให้หมุนช้า ๆ */
+.corner-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 1.2rem;
+    color: #3a7bd5;
+    opacity: 0.4;
+    user-select: none;
+    animation: spin-slow 8s linear infinite;
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+/* ===== TAMAGOTCHI SECTION ===== */
+.tama-section {
+    background-color: #1e1e2e;
+    padding: 60px 0 70px;
+}
+
+.tama-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.tama-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.5rem;
+}
+
+.tama-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f0ece4;
+    font-family: Georgia, serif;
+    margin-bottom: 2.5rem;
+}
+
+.tama-scene {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.tama-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.tama-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+}
+
+.tama-wrapper {
+    position: relative;
+}
+
+/* เปลือกอุปกรณ์ทามาก็อตจิ */
+/* เปลือกทามาก็อตมีรูปร่างโค้งนุ่ม พร้อมเอฟเฟกต์เวลาชี้ */
+.tama-device {
+    border-radius: 50% 50% 45% 45% / 55% 55% 45% 45%;
+    padding: 18px 20px 30px;
+    position: relative;
+    transition: transform 0.15s ease;
+}
+.tama-device:hover { transform: scale(1.04) rotate(-1deg); }
+
+/* สีกรอบทามาก็อตแต่ละตัว และเงาด้านในให้ดูมีมิติ */
+.tama-device--pink { background: #d4748a; box-shadow: inset 0 -5px 0 #a8566b, inset 0 4px 8px rgba(255,255,255,0.25); }
+.tama-device--blue { background: #6a9fd4; box-shadow: inset 0 -5px 0 #4a7db0, inset 0 4px 8px rgba(255,255,255,0.25); }
+
+.tama-screen-border {
+    background: #111;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.tama-screen-border canvas {
+    display: block;
+    border-radius: 8px;
+    image-rendering: pixelated;
+}
+
+.tama-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.tama-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.4);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+.tama-btn:hover  { transform: scale(1.15); }
+.tama-btn:active { transform: scale(0.88) translateY(2px); box-shadow: none; }
+
+.btn-red    { background: #e05555; }
+.btn-yellow { background: #e0a030; }
+.btn-blue   { background: #4488dd; }
+
+.tama-status {
+    font-size: 12px;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+    min-height: 18px;
+}
+
+/* Heart animation */
+.heart-pop {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #ff6b8a;
+    opacity: 0;
+    pointer-events: none;
+}
+.heart-pop.show {
+    animation: heartrise 0.9s ease-out forwards;
+}
+@keyframes heartrise {
+    0%   { opacity: 1; transform: translateX(-50%) translateY(0)    scale(0.6); }
+    60%  { opacity: 1; transform: translateX(-50%) translateY(-30px) scale(1.2); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-50px) scale(0.8); }
+}
+
+.tama-hint {
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* ===== HOME HERO SECTION ===== */
+
+/* .container เป็น wrapper หลักของ section Home
+   กำหนดขนาดสูงสุดและกึ่งกลางแนวนอน */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+/* .hero-profile จัดภาพและข้อมูลในแนวนอนด้วย Flexbox
+   gap คือระยะห่างระหว่างคอลัมน์ทั้งสอง */
+.hero-profile {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap; /* ห่อแนวตั้งบนหน้าจอแคบ */
+}
+
+/* ===== ฝั่งซ้าย: รูปโปรไฟล์ ===== */
+
+/* .hero-photo-col กำหนดขนาดคอลัมน์รูป
+   flex-shrink: 0 ป้องกันไม่ให้หดตัวเมื่อพื้นที่แคบ */
+.hero-photo-col {
+    flex: 0 0 340px;
+    display: flex;
+    justify-content: center;
+}
+
+/* .photo-frame เป็นกรอบตกแต่งรอบรูป
+   position: relative ทำให้ element ลูก absolute ใช้ตำแหน่งนี้เป็นฐาน */
+.photo-frame {
+    position: relative;
+    width: 300px;
+}
+
+/* มุมตกแต่งสองมุม: ซ้ายบน และ ขวาล่าง
+   ใช้ border ด้านเดียวเพื่อสร้างเส้นมุม L */
+.photo-corner {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+}
+
+/* มุมซ้ายบน: ใช้ border-top และ border-left */
+.photo-corner--tl {
+    top: -8px;
+    left: -8px;
+    border-top: 3px solid #00c3ff;
+    border-left: 3px solid #00c3ff;
+}
+
+/* มุมขวาล่าง: ใช้ border-bottom และ border-right */
+.photo-corner--br {
+    bottom: 32px; /* เผื่อพื้นที่ให้ badge ด้านล่าง */
+    right: -8px;
+    border-bottom: 3px solid #3a7bd5;
+    border-right: 3px solid #3a7bd5;
+}
+
+/* .hero-img คือรูปโปรไฟล์หลัก
+   object-fit: cover เก็บสัดส่วนภาพไว้โดยไม่ให้บิดเบี้ยว */
+.hero-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: top center; /* โฟกัสที่ใบหน้า */
+    border-radius: 20px;
+    display: block;
+    /* เงาหลายชั้น: เงาหลักและแสงสีฟ้าอ่อน */
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.22),
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 30px rgba(0, 195, 255, 0.12);
+    /* transition สำหรับเอฟเฟกต์ hover */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* เลื่อนรูปขึ้นเล็กน้อยและเพิ่มแสงสีฟ้าเมื่อชี้เมาส์ */
+.hero-img:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+        0 36px 80px rgba(0, 0, 0, 0.28),
+        0 0 40px rgba(0, 195, 255, 0.25);
+}
+
+/* .photo-badge เป็นป้ายชื่อลอยที่ด้านล่างของรูป
+   position: absolute ให้ลอยทับรูปได้ */
+.photo-badge {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(120deg, #00c3ff, #3a7bd5);
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    /* เงาสำหรับ badge */
+    box-shadow: 0 4px 16px rgba(58, 123, 213, 0.5);
+}
+
+/* ===== ฝั่งขวา: ข้อมูลส่วนตัว ===== */
+
+/* .hero-info-col ให้ยืดเต็มพื้นที่ที่เหลือ */
+.hero-info-col {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* ป้ายหมวดหมู่เล็กด้านบนสุด สไตล์โมโนสเปซ */
+.hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #00c3ff;
+    font-family: 'Courier New', monospace;
+}
+
+/* .hero-name ชื่อเต็มขนาดใหญ่
+   clamp() ปรับขนาดฟอนต์ตามหน้าจออัตโนมัติ */
+.hero-name {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #1a1a2e;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+/* .hero-name-accent ทำให้นามสกุลเป็นสีและสไตล์ต่างออกไป
+   สร้างคอนทราสต์ระหว่างชื่อต้นและนามสกุล */
+.hero-name-accent {
+    /* -webkit-text-stroke สร้างตัวอักษรแบบ outline (เส้นกรอบ ไม่เติมสี) */
+    -webkit-text-stroke: 2px #1a1a2e;
+    color: transparent;
+    letter-spacing: 0.02em;
+}
+
+/* เส้นแบ่งตกแต่ง: เส้นบางไล่สีจากสีฟ้าไปโปร่งใส */
+.hero-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00c3ff, #3a7bd5, transparent);
+    border-radius: 2px;
+}
+
+/* .info-list รายการข้อมูลโดยไม่มี bullet point */
+.info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* ใช้ border-bottom ของแต่ละรายการแทน gap */
+}
+
+/* .info-item แต่ละแถวข้อมูล
+   Flexbox จัด label และ value ในแนวนอน */
+.info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    /* เส้นแบ่งระหว่างแถว ใช้ opacity ต่ำให้ดูเบา */
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    /* animation เลื่อนขึ้นเมื่อโหลดหน้า */
+    animation: fadeSlideUp 0.5s ease both;
+}
+
+/* หน่วงเวลา animation แต่ละแถวให้ทยอยปรากฏ */
+.info-item:nth-child(1) { animation-delay: 0.1s; }
+.info-item:nth-child(2) { animation-delay: 0.2s; }
+.info-item:nth-child(3) { animation-delay: 0.3s; }
+.info-item:nth-child(4) { animation-delay: 0.4s; }
+.info-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* ไม่มีเส้นแบ่งในแถวสุดท้าย */
+.info-item:last-child {
+    border-bottom: none;
+}
+
+/* .info-label ชื่อฟิลด์ขนาดเล็ก ตัวพิมพ์ใหญ่ สีเทา
+   flex-shrink: 0 ไม่ให้ label หดตัว */
+.info-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #008799;
+    font-family: 'Courier New', monospace;
+    min-width: 110px;
+    flex-shrink: 0;
+}
+
+/* .info-value ค่าของแต่ละฟิลด์ */
+.info-value {
+    font-size: 0.98rem;
+    color: #2a2a3e;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* .hero-tags แถว badge ทักษะ */
+.hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/* .hero-tag badge เล็กแต่ละอัน
+   border รอบนอกบาง พื้นหลังโปร่งใส */
+.hero-tag {
+    font-size: 0.75rem;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(58, 123, 213, 0.3);
+    color: #3a7bd5;
+    background: rgba(0, 195, 255, 0.06);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    /* transition สำหรับ hover */
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+/* badge เปลี่ยนสีพื้นหลังและขยายเล็กน้อยเมื่อ hover */
+.hero-tag:hover {
+    background: rgba(0, 195, 255, 0.15);
+    border-color: #00c3ff;
+    transform: translateY(-2px);
+}
+
+/* keyframe animation เลื่อนขึ้นจากด้านล่าง */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE: หน้าจอแคบ ===== */
+@media (max-width: 700px) {
+    /* เปลี่ยนเป็นแนวตั้งบนมือถือ */
+    .hero-profile {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    /* รูปเต็มความกว้าง */
+    .hero-photo-col {
+        flex: none;
+        width: 100%;
+    }
+    .photo-frame {
+        width: 220px;
+        margin: 0 auto;
+    }
+    .hero-name {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 3rem 1rem 2rem;
+}
+
+.footer-con {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.footer-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #00c3ff;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: #00c3ff;
+}
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 2rem 0 1rem;
+}
+
+.footer-bottom {
+    max-width: 1140px;
+    margin: 0 auto;
+    font-size: 0.75rem;
+    color: #555;
+    font-family: 'Courier New', monospace;
+}
+
+@media (max-width: 700px) {
+    .footer-con { flex-direction: column; }
+}

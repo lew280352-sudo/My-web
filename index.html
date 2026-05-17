@@ -1,0 +1,360 @@
+<!-- ประกาศว่าเป็น HTML5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- กำหนดการเข้ารหัสตัวอักษรให้เป็น UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- ปรับการแสดงผลให้เหมาะกับหน้าจอมือถือ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ชื่อชื่อแท็บของเว็บ -->
+    <title>my portfolio</title>
+    <!-- เชื่อมไฟล์สไตล์ชีทภายนอก -->
+    <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+    <!-- แท็กนำทางหลักของหน้า -->
+    <nav>
+        <!-- กล่องเนื้อหาใช้จัดตำแหน่งและกั้นกรอบ -->
+        <div class="content">
+            <!-- บรรจุส่วนของโลโก้และเมนู -->
+            <div class="nav-con">
+                <!-- โลโก้หรือชื่อเว็บ สามารถคลิกเพื่อกลับหน้าแรก -->
+                <div class="logo"><a href="#"> <img src="logo.jpg" alt="Logo"></a></div>
+                <!-- เมนูนำทางหลักของเว็บ -->
+                <ul class="menu">
+                    <li><a href="#Home"><span>Home</span></a></li>
+                    <li><a href="Education.html"><span>Education</span></a></li>
+                    <li><a href="Transcript.html"><span>Transcript</span></a></li>
+                    <li><a href="Activities.html"><span>Activities</span></a></li>
+                    <li><a href="Certifications.html"><span>Certifications</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="main" id="Home">
+        <div class="container">
+
+            <!-- ===== HERO PROFILE SECTION ===== -->
+            <!-- wrapper หลักที่จัดภาพและข้อมูลเคียงกันในแนวนอน -->
+            <div class="hero-profile">
+
+                <!-- ===== ฝั่งซ้าย: รูปโปรไฟล์ ===== -->
+                <div class="hero-photo-col">
+                    <!-- กรอบตกแต่งรอบรูป มีเส้น accent และเงา -->
+                    <div class="photo-frame">
+                        <!-- ป้ายมุมซ้ายบนสำหรับตกแต่ง -->
+                        <div class="photo-corner photo-corner--tl"></div>
+                        <!-- ป้ายมุมขวาล่างสำหรับตกแต่ง -->
+                        <div class="photo-corner photo-corner--br"></div>
+                        <!-- รูปโปรไฟล์ -->
+                        <img src="lew.jpg" alt="Lew – Profile Photo" class="hero-img">
+                        <!-- ป้ายชื่อเล่นที่ลอยอยู่ด้านล่าง -->
+                        <div class="photo-badge">✦ Lew ✦</div>
+                    </div>
+                </div>
+
+                <!-- ===== ฝั่งขวา: ข้อมูลส่วนตัว ===== -->
+                <div class="hero-info-col">
+
+                    <!-- ป้ายหมวดหมู่ขนาดเล็กด้านบน -->
+                    <p class="hero-eyebrow">Portfolio · 2027</p>
+
+                    <!-- ชื่อเต็มแสดงในฟอนต์ขนาดใหญ่ -->
+                    <h1 class="hero-name">Kantniti<br><span class="hero-name-accent">Saksriyuttana</span></h1>
+
+                    <!-- เส้นแบ่งตกแต่ง -->
+                    <div class="hero-divider"></div>
+
+                    <!-- รายการข้อมูลส่วนตัวแต่ละรายการ -->
+                    <ul class="info-list">
+                        <!-- แต่ละ item มี label (ชื่อฟิลด์) และ value (ข้อมูล) -->
+                        <li class="info-item">
+                            <span class="info-label">Nickname</span>
+                            <span class="info-value">Lew</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Birth</span>
+                            <span class="info-value">28 March 2009</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Interests</span>
+                            <span class="info-value">Web Dev · Game Design · Programming</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Hobbies</span>
+                            <span class="info-value">Coding · Tech News · Gaming</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Talents</span>
+                            <span class="info-value">Violin · Chinese</span>
+                        </li>
+                    </ul>
+
+                    <!-- แถว tag/badge แสดงทักษะสั้น ๆ -->
+                    <div class="hero-tags">
+                        <span class="hero-tag">🎻 Violin</span>
+                        <span class="hero-tag">🀄 Chinese</span>
+                        <span class="hero-tag">💻 Code</span>
+                        <span class="hero-tag">🎮 Games</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ===== TAMAGOTCHI SECTION ===== -->
+    <section class="tama-section">
+        <div class="tama-container">
+            <p class="tama-label">Virtual Pets</p>
+            <h2 class="tama-heading">My Little Friends</h2>
+            <div class="tama-scene">
+
+                <!-- ตัวทามาก็อตตัวแรก -->
+                <div class="tama-unit">
+                    <div class="tama-name">Mochi</div>
+                    <div class="tama-wrapper">
+                        <!-- หัวใจเมื่อกดปุ่มแล้ว -->
+                        <span class="heart-pop" id="heartL">♥</span>
+                        <div class="tama-device tama-device--pink">
+                            <div class="tama-screen-border">
+                                <!-- จอทามาก็อตวาดด้วย canvas -->
+                                <canvas id="canvasL" width="100" height="90"></canvas>
+                            </div>
+                            <div class="tama-buttons">
+                                <!-- ปุ่มคำสั่งสำหรับตัวแรก -->
+                                <button class="tama-btn btn-red" onclick="tamaFeed('L')" title="Feed"></button>
+                                <button class="tama-btn btn-yellow" onclick="tamaPlay('L')" title="Play"></button>
+                                <button class="tama-btn btn-blue" onclick="tamaGreet('L')" title="Greet"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tama-status" id="statusL">zzz...</div>
+                </div>
+
+                <!-- ตัวทามาก็อตตัวที่สอง -->
+                <div class="tama-unit">
+                    <div class="tama-name">Kuri</div>
+                    <div class="tama-wrapper">
+                        <span class="heart-pop" id="heartR">♥</span>
+                        <div class="tama-device tama-device--blue">
+                            <div class="tama-screen-border">
+                                <canvas id="canvasR" width="100" height="90"></canvas>
+                            </div>
+                            <div class="tama-buttons">
+                                <button class="tama-btn btn-red" onclick="tamaFeed('R')" title="Feed"></button>
+                                <button class="tama-btn btn-yellow" onclick="tamaPlay('R')" title="Play"></button>
+                                <button class="tama-btn btn-blue" onclick="tamaGreet('R')" title="Greet"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tama-status" id="statusR">zzz...</div>
+                </div>
+
+            </div>
+            <p class="tama-hint">🔴 ให้อาหาร &nbsp;|&nbsp; 🟡 เล่น &nbsp;|&nbsp; 🔵 ทักทายกัน</p>
+        </div>
+    </section>
+
+    <script>
+    // บรรจุโค้ดทามาก็อตไว้ใน IIFE เพื่อไม่ให้ตัวแปรรั่วสู่ global scope
+    (function(){
+        // สีพื้นหลังและสีพื้นหลังจอ
+        const BG = '#9ead86', FG = '#2a2a1a', pxSz = 9, offY = 5;
+
+        // กำหนดเฟรมภาพพิกเซลสำหรับแต่ละสถานะ
+        const frames = {
+            idle:[
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,1,0,0,0,0,1,0,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,0,1,1,1,1,0,1,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,0,0,0,0,1,1,0],
+                [0,0,1,1,1,1,1,1,0,0],
+                [0,0,0,1,0,0,1,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]
+            ],
+            happy: [
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,1,0,0,0,0,1,0,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,0,1,1,0,1,1,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,0,1,1,1,1,0,1,0],
+                [0,0,1,1,1,1,1,1,0,0],
+                [0,0,1,0,1,1,0,1,0,0],
+                [0,0,0,0,0,0,0,0,0,0]
+            ],
+            eat:   [
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,1,1,0,0,0,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,0,1,1,1,1,0,1,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,1,0,0,1,1,1,0],
+                [0,0,1,1,1,1,1,1,0,0],
+                [0,0,0,1,0,0,1,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]
+            ],
+            wave:  [
+                [0,0,0,1,0,0,0,0,0,0],
+                [0,0,1,1,0,0,0,1,0,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,0,1,1,1,1,0,1,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,0,0,0,0,1,1,0],
+                [0,0,1,1,1,1,1,1,0,0],
+                [0,0,0,1,1,0,1,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]
+            ],
+            sleep: [
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,0,1,1,0,1,1,0],
+                [0,1,1,1,1,1,1,1,1,0],
+                [0,1,1,0,1,1,0,1,1,0],
+                [0,0,1,1,1,1,1,1,0,0],
+                [0,0,0,1,1,1,1,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]
+            ],
+        };
+
+        // วาดภาพพิกเซลลง canvas ตามเฟรมที่กำหนด
+        function drawFrame(canvas, key, flip) {
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = BG; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = FG;
+            frames[key].forEach((row, y) => row.forEach((v, x) => {
+                if (v) ctx.fillRect((flip ? 9-x : x)*pxSz, y*pxSz+offY, pxSz-1, pxSz-1);
+            }));
+        }
+
+        // สถานะของทามาก็อตแต่ละตัว
+        const state = { L:{frame:'sleep',flip:false,timer:null}, R:{frame:'sleep',flip:true,timer:null} };
+        const cvs = {L:document.getElementById('canvasL'), R:document.getElementById('canvasR')};
+        const sts = {L:document.getElementById('statusL'), R:document.getElementById('statusR')};
+        const hts = {L:document.getElementById('heartL'),  R:document.getElementById('heartR')};
+
+        function render(id){ drawFrame(cvs[id], state[id].frame, state[id].flip); }
+        function setStatus(id, msg){ sts[id].textContent = msg; }
+
+        // เปลี่ยนเฟรมและสถานะชั่วคราว แล้วกลับไปที่ idle เมื่อครบเวลา
+        function tempFrame(id, key, msg, dur){
+            if(state[id].timer) clearTimeout(state[id].timer);
+            state[id].frame = key;
+            render(id);
+            setStatus(id, msg);
+            state[id].timer = setTimeout(() => {
+                state[id].frame = 'idle';
+                render(id);
+                setStatus(id, '(*´ω`*)');
+            }, dur);
+        }
+
+        // แสดงหัวใจเมื่อทามาก็อตถูกกระตุ้น
+        function showHeart(id){
+            const h = hts[id];
+            h.classList.remove('show');
+            void h.offsetWidth; // ทำให้ browser รีเฟรชการเปลี่ยนแปลงคลาส
+            h.classList.add('show');
+        }
+
+        // คำสั่งต่าง ๆ ที่เรียกจากปุ่มใน HTML
+        // ใส่ฟังก์ชันลงใน window เพื่อให้ onclick ใน HTML เรียกใช้งานได้
+        window.tamaFeed = id => { tempFrame(id, 'eat', 'Nom nom~', 1200); showHeart(id); };
+        window.tamaPlay = id => {
+            let t = 0;
+            if(state[id].timer) clearTimeout(state[id].timer);
+            setStatus(id, 'Wheee~');
+            const b = () => {
+                state[id].frame = t % 2 === 0 ? 'happy' : 'idle';
+                render(id);
+                t++;
+                if(t < 6) state[id].timer = setTimeout(b, 200);
+                else {
+                    state[id].frame = 'idle';
+                    render(id);
+                    setStatus(id, 'Yay!! (≧▽≦)');
+                }
+            };
+            b();
+        };
+        window.tamaGreet = id => {
+            const o = id === 'L' ? 'R' : 'L';
+            tempFrame(id, 'wave', 'Hello!!', 1000);
+            setTimeout(() => {
+                tempFrame(o, 'wave', 'Hello!!', 1000);
+                showHeart(id);
+                showHeart(o);
+            }, 300);
+        };
+
+        // เริ่มต้นวาดและแสดงสถานะเริ่มต้น
+        render('L');
+        render('R');
+        setTimeout(() => {
+            tempFrame('L', 'idle', 'Good morning!', 99999);
+            setStatus('L', 'Good morning!');
+            setTimeout(() => {
+                tempFrame('R', 'idle', 'Good morning!', 99999);
+                setStatus('R', 'Good morning!');
+            }, 400);
+        }, 800);
+    })();
+    </script>
+    
+    <!-- ตรวจสอบและไฮไลท์เมนูที่ active -->
+    <script>
+        // ฟังก์ชันนี้จะเลือกปุ่มเมนูที่ตรงกับหน้าปัจจุบันหรือ anchor ปัจจุบัน
+        function updateActiveMenu() {
+            // window.location.hash คือส่วน #Home หรือ #Profile ถ้ามี
+            const currentHash = window.location.hash || '#Home';
+            // window.location.pathname เอา path ของ URL แล้ว split('/') เพื่อหาไฟล์ชื่อสุดท้าย
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
+            document.querySelectorAll('.menu a').forEach(link => {
+                // ลบ active class ออกก่อน เพื่อรีเซ็ตทุกปุ่ม
+                link.classList.remove('active');
+                
+                const href = link.getAttribute('href');
+                
+                // ถ้า href เริ่มด้วย # ให้ใช้ anchor เทียบกับ hash ปัจจุบัน
+                if (href.startsWith('#')) {
+                    if (href === currentHash) {
+                        link.classList.add('active');
+                    }
+                }
+                // ถ้า href เป็นชื่อไฟล์ เช่น Profile.html ให้เทียบกับหน้าไฟล์ปัจจุบัน
+                else {
+                    if (currentPage.toLowerCase() === href.toLowerCase()) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // เรียกครั้งแรกตอนหน้ากโหลด เพื่อให้ปุ่ม active ถูกตั้งทันที
+        updateActiveMenu();
+        
+        // ฟังเหตุการณ์ hashchange เมื่อ # ใน URL เปลี่ยน เช่น คลิกลิงก์ anchor
+        window.addEventListener('hashchange', updateActiveMenu);
+    </script>
+<footer>
+    <div class="footer-con">
+        <div>
+            <p class="footer-eyebrow">Portfolio</p>
+            <p class="footer-brand">Kantniti</p>
+        </div>
+        <div class="footer-links">
+            <p class="footer-eyebrow">Contact</p>
+            <a href="mailto:lew280352@gmail.com">✉ lew280352@gmail.com</a>
+            <a href="https://github.com/yourusername" target="_blank">⌥ GitHub</a>
+            <a href="https://line.me/ti/p/~lew98675" target="_blank">◎ Line: @lew98675</a>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-bottom">© 2027 Kantniti· All rights reserved</p>
+</footer>
+</body>
+</html>
