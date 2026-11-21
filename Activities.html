@@ -36,13 +36,14 @@
                 <!-- ส่วนข้อความเยื้องซ้าย -->
                 <div class="maincontent-info">
                     <p class="slide-label">Gallery</p>
-                    <h1 class="slide-title" id="slide-title"><span>เรียนรู้</span><span>เทคโนโลยี</span><span>หุ่นยนต์</span></h1>
-                    <p class="slide-desc" id="slide-desc">ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์</p>
+                    <h1 class="slide-title" id="slide-title"><span>A-Math</span><span>กีฬาสาธิต</span><span>ปี 2568</span></h1>
+                    <p class="slide-desc" id="slide-desc">เข้าร่วมการแข่งขัน A-Math ในกีฬาสาธิตสามัคคี ครั้งที่ 48 “องครักษ์เกมส์” ปี 2568 งานจัดระหว่างวันที่ 18–24 ธันวาคม 2568 ณ โรงเรียนสาธิต มศว องครักษ์ จังหวัดนครนายก</p>
+                    <a class="slide-source" id="slide-source" href="https://nakhonnayok.prd.go.th/th/content/category/detail/id/57/iid/444117" target="_blank" rel="noopener">ข้อมูลการแข่งขัน · สำนักงานประชาสัมพันธ์จังหวัดนครนายก</a>
                     <!-- Counter -->
                     <div class="slide-counter" aria-live="polite" aria-atomic="true">
                         <span id="current-num">01</span>
                         <span class="counter-sep"></span>
-                        <span id="total-num">03</span>
+                        <span id="total-num">04</span>
                     </div>
                     <!-- Dots -->
                     <div class="dots" id="dots"></div>
@@ -51,8 +52,11 @@
                 <!-- Carousel -->
                 <div class="carousel-wrap">
                     <div class="carousel-track" id="carousel-track">
-                        <div class="carousel-slide active" data-title="เรียนรู้เทคโนโลยีหุ่นยนต์" data-title-parts="เรียนรู้|เทคโนโลยี|หุ่นยนต์" data-description="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์">
-                            <img src="assets/activities/robot-demonstration.jpg" alt="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์" width="1292" height="968">
+                        <div class="carousel-slide active" data-title="A-Math · กีฬาสาธิต ปี 2568" data-title-parts="A-Math|กีฬาสาธิต|ปี 2568" data-description="เข้าร่วมการแข่งขัน A-Math ในกีฬาสาธิตสามัคคี ครั้งที่ 48 “องครักษ์เกมส์” ปี 2568 งานจัดระหว่างวันที่ 18–24 ธันวาคม 2568 ณ โรงเรียนสาธิต มศว องครักษ์ จังหวัดนครนายก" data-source="https://nakhonnayok.prd.go.th/th/content/category/detail/id/57/iid/444117">
+                            <img src="lew.jpg" alt="ภาพเข้าร่วมการแข่งขัน A-Math กีฬาสาธิตสามัคคี ครั้งที่ 48 องครักษ์เกมส์ ปี 2568" width="1108" height="1477">
+                        </div>
+                        <div class="carousel-slide" data-title="เรียนรู้เทคโนโลยีหุ่นยนต์" data-title-parts="เรียนรู้|เทคโนโลยี|หุ่นยนต์" data-description="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์">
+                            <img src="assets/activities/robot-demonstration.jpg" alt="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์" width="1292" height="968" loading="lazy">
                         </div>
                         <div class="carousel-slide" data-title="กิจกรรมหุ่นยนต์ฟุตบอล" data-title-parts="กิจกรรม|หุ่นยนต์|ฟุตบอล" data-description="บรรยากาศการควบคุมหุ่นยนต์ในสนามฟุตบอลจำลอง">
                             <img src="assets/activities/robot-soccer.jpg" alt="บรรยากาศการควบคุมหุ่นยนต์ในสนามฟุตบอลจำลอง" width="1292" height="968" loading="lazy">
@@ -104,6 +108,13 @@
             });
             document.getElementById('slide-title').replaceChildren(...titleParts);
             document.getElementById('slide-desc').textContent = slides[current].dataset.description;
+            const source = document.getElementById('slide-source');
+            source.hidden = !slides[current].dataset.source;
+            if (slides[current].dataset.source) {
+                source.href = slides[current].dataset.source;
+            } else {
+                source.removeAttribute('href');
+            }
             document.getElementById('current-num').textContent = String(current + 1).padStart(2, '0');
             document.getElementById('total-num').textContent = String(slides.length).padStart(2, '0');
         }
