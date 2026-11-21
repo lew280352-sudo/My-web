@@ -38,7 +38,6 @@
                     <p class="slide-label">Gallery</p>
                     <h1 class="slide-title" id="slide-title"><span>A-Math</span><span>กีฬาสาธิต</span><span>ปี 2568</span></h1>
                     <p class="slide-desc" id="slide-desc">เข้าร่วมการแข่งขัน A-Math ในกีฬาสาธิตสามัคคี ครั้งที่ 48 “องครักษ์เกมส์” ปี 2568 งานจัดระหว่างวันที่ 18–24 ธันวาคม 2568 ณ โรงเรียนสาธิต มศว องครักษ์ จังหวัดนครนายก</p>
-                    <a class="slide-source" id="slide-source" href="https://nakhonnayok.prd.go.th/th/content/category/detail/id/57/iid/444117" target="_blank" rel="noopener">ข้อมูลการแข่งขัน · สำนักงานประชาสัมพันธ์จังหวัดนครนายก</a>
                     <!-- Counter -->
                     <div class="slide-counter" aria-live="polite" aria-atomic="true">
                         <span id="current-num">01</span>
@@ -108,13 +107,6 @@
             });
             document.getElementById('slide-title').replaceChildren(...titleParts);
             document.getElementById('slide-desc').textContent = slides[current].dataset.description;
-            const source = document.getElementById('slide-source');
-            source.hidden = !slides[current].dataset.source;
-            if (slides[current].dataset.source) {
-                source.href = slides[current].dataset.source;
-            } else {
-                source.removeAttribute('href');
-            }
             document.getElementById('current-num').textContent = String(current + 1).padStart(2, '0');
             document.getElementById('total-num').textContent = String(slides.length).padStart(2, '0');
         }
