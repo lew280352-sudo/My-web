@@ -36,7 +36,7 @@
                 <!-- ส่วนข้อความเยื้องซ้าย -->
                 <div class="maincontent-info">
                     <p class="slide-label">Gallery</p>
-                    <h1 class="slide-title" id="slide-title">เรียนรู้เทคโนโลยีหุ่นยนต์</h1>
+                    <h1 class="slide-title" id="slide-title"><span>เรียนรู้</span><span>เทคโนโลยี</span><span>หุ่นยนต์</span></h1>
                     <p class="slide-desc" id="slide-desc">ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์</p>
                     <!-- Counter -->
                     <div class="slide-counter" aria-live="polite" aria-atomic="true">
@@ -51,13 +51,13 @@
                 <!-- Carousel -->
                 <div class="carousel-wrap">
                     <div class="carousel-track" id="carousel-track">
-                        <div class="carousel-slide active" data-title="เรียนรู้เทคโนโลยีหุ่นยนต์" data-description="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์">
+                        <div class="carousel-slide active" data-title="เรียนรู้เทคโนโลยีหุ่นยนต์" data-title-parts="เรียนรู้|เทคโนโลยี|หุ่นยนต์" data-description="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์">
                             <img src="assets/activities/robot-demonstration.jpg" alt="ชมการสาธิตหุ่นยนต์และแลกเปลี่ยนความรู้เกี่ยวกับการทำงานของหุ่นยนต์" width="1292" height="968">
                         </div>
-                        <div class="carousel-slide" data-title="กิจกรรมหุ่นยนต์ฟุตบอล" data-description="บรรยากาศการควบคุมหุ่นยนต์ในสนามฟุตบอลจำลอง">
+                        <div class="carousel-slide" data-title="กิจกรรมหุ่นยนต์ฟุตบอล" data-title-parts="กิจกรรม|หุ่นยนต์|ฟุตบอล" data-description="บรรยากาศการควบคุมหุ่นยนต์ในสนามฟุตบอลจำลอง">
                             <img src="assets/activities/robot-soccer.jpg" alt="บรรยากาศการควบคุมหุ่นยนต์ในสนามฟุตบอลจำลอง" width="1292" height="968" loading="lazy">
                         </div>
-                        <div class="carousel-slide" data-title="ภาพร่วมกิจกรรม" data-description="ภาพหมู่กับผู้ร่วมกิจกรรมและทีมงานในงานหุ่นยนต์">
+                        <div class="carousel-slide" data-title="ภาพร่วมกิจกรรม" data-title-parts="ภาพร่วม|กิจกรรม" data-description="ภาพหมู่กับผู้ร่วมกิจกรรมและทีมงานในงานหุ่นยนต์">
                             <img src="assets/activities/robotics-group.jpg" alt="ภาพหมู่กับผู้ร่วมกิจกรรมและทีมงานในงานหุ่นยนต์" width="1292" height="968" loading="lazy">
                         </div>
                     </div>
@@ -97,7 +97,12 @@
                 dots[i].classList.toggle('active', i === current);
                 dots[i].setAttribute('aria-pressed', String(i === current));
             });
-            document.getElementById('slide-title').textContent = slides[current].dataset.title;
+            const titleParts = slides[current].dataset.titleParts.split('|').map(text => {
+                const part = document.createElement('span');
+                part.textContent = text;
+                return part;
+            });
+            document.getElementById('slide-title').replaceChildren(...titleParts);
             document.getElementById('slide-desc').textContent = slides[current].dataset.description;
             document.getElementById('current-num').textContent = String(current + 1).padStart(2, '0');
             document.getElementById('total-num').textContent = String(slides.length).padStart(2, '0');

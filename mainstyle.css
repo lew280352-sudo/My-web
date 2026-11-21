@@ -899,7 +899,8 @@ footer {
 .portfolio-media-page .slide-label { font-size: .875rem; color: #666; }
 .portfolio-media-page .slide-desc { font-size: 1rem; max-width: 34rem; }
 #Activities .maincontent-info { flex: 0 1 34%; min-width: 0; gap: 1rem; }
-#Activities .slide-title { line-height: 1.4; }
+#Activities .slide-title { display: flex; flex-wrap: wrap; column-gap: .15em; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.4; }
+#Activities .slide-title > span { white-space: nowrap; }
 #Activities .carousel-wrap { flex: 1 1 66%; min-width: 0; margin: 0; padding: 1rem; }
 #Activities .carousel-track { aspect-ratio: 1292 / 968; max-width: none; background: #fff; }
 #Activities .carousel-slide img { object-fit: contain; }
