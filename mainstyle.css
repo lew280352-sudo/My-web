@@ -789,6 +789,31 @@ nav{
     transform: translateY(-2px);
 }
 
+/* Downloadable game projects */
+.hero-tags a { text-decoration: none; }
+.games-section { padding: 3rem 1.25rem 4rem; background: #eef3fa; scroll-margin-top: 1rem; font-family: Arial, Tahoma, sans-serif; }
+.games-container { max-width: 1108px; margin: 0 auto; }
+.games-eyebrow { margin-bottom: 1rem; color: #175ba8; font-size: .875rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.game-project { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); overflow: hidden; border: 1px solid #d3dfef; border-radius: 24px; background: #fff; box-shadow: 0 16px 40px rgba(18,48,88,.08); }
+.game-art { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 360px; padding: 2rem; background: radial-gradient(circle at 50% 40%, #1e5186, #101d31 75%); color: #80d6ff; }
+.game-art svg { width: min(70%, 190px); margin-bottom: 1.5rem; filter: drop-shadow(0 0 16px rgba(75,180,255,.3)); }
+.game-art span { font-size: 1rem; letter-spacing: .25em; }
+.game-art strong { margin-top: .5rem; font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: .08em; color: #fff; }
+.game-info { padding: clamp(1.5rem, 4vw, 3rem); color: #25354b; }
+.game-platform { color: #175ba8; font-size: .875rem; font-weight: 700; }
+.game-info h2 { margin: .75rem 0 1rem; font-size: clamp(1.3rem, 2.5vw, 1.9rem); line-height: 1.35; overflow-wrap: anywhere; color: #17283f; }
+.game-info > p { line-height: 1.8; }
+.game-download { display: inline-block; margin-top: 1.5rem; padding: .85rem 1.25rem; border-radius: 999px; background: #175ba8; color: #fff; font-size: 1rem; font-weight: 600; line-height: 1.5; text-decoration: none; text-align: center; }
+.game-download:hover { background: #10467f; }
+.game-download:focus-visible, .hero-tags a:focus-visible { outline: 3px solid #175ba8; outline-offset: 4px; }
+.game-info .game-file-info { margin-top: .65rem; color: #53647a; font-size: .875rem; }
+.game-instructions { margin: 1.25rem 0 0; padding-left: 1.4rem; font-size: 1rem; line-height: 1.9; }
+@media (max-width: 700px) {
+    .game-project { grid-template-columns: 1fr; }
+    .game-art { min-height: 240px; }
+    .game-art svg { width: 100px; margin-bottom: 1rem; }
+}
+
 /* keyframe animation เลื่อนขึ้นจากด้านล่าง */
 @keyframes fadeSlideUp {
     from {
