@@ -920,6 +920,31 @@ footer {
 }
 
 /* Activity photos and certificate previews */
+.activity-shortcuts { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; padding: 1.1rem 1.25rem; background: #eef3fa; border-bottom: 1px solid #d7e3f1; }
+.activity-shortcuts a { padding: .6rem 1rem; border-radius: 999px; color: #175ba8; font-size: 1rem; text-decoration: none; }
+.activity-shortcuts a:hover { background: #dce9f9; }
+.github-projects-section { padding: 3.5rem 1.25rem; background: #f4f7fc; scroll-margin-top: 1rem; }
+.projects-container { max-width: 1108px; margin: 0 auto; }
+.projects-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; margin-bottom: 2rem; }
+.projects-header .games-eyebrow { margin-bottom: .5rem; }
+.projects-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); color: #17283f; line-height: 1.5; }
+.projects-header p { color: #43556e; font-size: 1rem; line-height: 1.8; }
+.project-profile-link { color: #175ba8; font-size: 1rem; line-height: 1.7; text-underline-offset: .25em; }
+.github-project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.github-project-card { display: flex; flex-direction: column; min-width: 0; padding: 1.5rem; border: 1px solid #d6e2f0; border-radius: 20px; background: #fff; box-shadow: 0 8px 24px rgba(23,57,101,.04); }
+.project-category { display: flex; align-items: center; gap: .75rem; color: #175ba8; font-size: .875rem; line-height: 1.6; }
+.project-category svg { flex: none; width: 36px; height: 36px; padding: 6px; border-radius: 10px; background: #e9f2ff; }
+.github-project-card h3 { margin: 1rem 0 .75rem; font-size: 1.3rem; line-height: 1.5; color: #142943; }
+.project-description { font-size: 1rem; line-height: 1.85; color: #43556e; }
+.project-technologies { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.project-technologies li { padding: .25rem .65rem; border-radius: 999px; background: #eef3fa; color: #3d5572; font-size: .875rem; line-height: 1.5; }
+.project-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: auto; padding-top: 1.5rem; }
+.project-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .55rem .85rem; border: 1px solid #175ba8; border-radius: 999px; color: #175ba8; text-decoration: none; font-size: .875rem; font-weight: 600; line-height: 1.5; }
+.project-actions .project-live { background: #175ba8; color: #fff; }
+.project-actions .project-live:hover { background: #10467f; }
+.project-actions .project-code:hover { background: #e9f2ff; }
+@media (max-width: 1000px) { .github-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 650px) { .github-project-grid { grid-template-columns: 1fr; } }
 .portfolio-media-page { font-family: Arial, Tahoma, sans-serif; color: #222; }
 .portfolio-media-page .slide-label { font-size: .875rem; color: #666; }
 .portfolio-media-page .slide-desc { font-size: 1rem; max-width: 34rem; }
